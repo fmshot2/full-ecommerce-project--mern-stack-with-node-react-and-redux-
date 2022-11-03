@@ -1,80 +1,30 @@
-import React from 'react'
+import React, { Fragment, useEffect } from "react";
+import MetaData from './layout/MetaData'
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../actions/productActions";
+import axios from 'axios';
 
 const attributeElements={
     "xmlns:xlink":"http://www.w3.org/1999/xlink",
     "xml:space":"preserve"
   }
 
-const Home = () => {
-  return (
-    <div> 
-  {/* <section className="collection-banner section-pt-space b-g-white ">
-  <div className="custom-container">
-    <div className="row collection2">
-      <div className="col-md-4">
-        <div className="collection-banner-main banner-1  p-right">
-          <div className="collection-img bg-size" 
-        //   style={{background-image: url(&quot;../assets/images/layout-2/collection-banner/1.jpg&quot;); background-size: cover; background-position: center center; display: block;"
-          >
-            <img src="../assets/images/layout-2/collection-banner/1.jpg" className="img-fluid bg-img" alt="banner"/>
-          </div>
-          <div className="collection-banner-contain">
-            <div>
-              <h3>women</h3>
-              <h4>fashion</h4>
-              <div className="shop">
-                <a href="product-page(left-sidebar).html">
-                  shop now
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="col-md-4">
-        <div className="collection-banner-main banner-1 p-right">
-          <div className="collection-img bg-size" 
-        //   style={{background-image: url(&quot;../assets/images/layout-2/collection-banner/2.jpg&quot;); background-size: cover; background-position: center center; display: block;"
-          >
-            <img src="../assets/images/layout-2/collection-banner/2.jpg" className="img-fluid bg-img  " alt="banner" />
-          </div>
-          <div className="collection-banner-contain ">
-            <div>
-              <h3>camera</h3>
-              <h4>lenses</h4>
-              <div className="shop">
-                <a href="product-page(left-sidebar).html">
-                  shop now
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="col-md-4">
-        <div className="collection-banner-main banner-1 p-right">
-          <div className="collection-img bg-size" 
-        //   style={{background-image: url(&quot;../assets/images/layout-2/collection-banner/3.jpg&quot;); background-size: cover; background-position: center center; display: block;"
-          >
-            <img src="../assets/images/layout-2/collection-banner/3.jpg" className="img-fluid bg-img  " alt="banner"/>
-          </div>
-          <div className="collection-banner-contain ">
-            <div>
-              <h3>refrigerator</h3>
-              <h4>lG mini</h4>
-              <div className="shop">
-                <a href="product-page(left-sidebar).html">
-                  shop now
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> */}
-                 {/* collection banner start */}
+  export const Home = () => {
+
+    const dispatch = useDispatch();
+    const { loading, products, error, productsCount } = useSelector(state => state.products)
+  
+    useEffect(() => {
+      var myproducts = dispatch(getProducts());
+      console.log ('products', products)
+  }, [dispatch])
+   
+    return (
+      <Fragment>
+          <MetaData title={'Buy Best Products'}/>
+          <main>
+
+        {/* collection banner start */}
 
         <section className="collection-banner section-py-space">
         <div className="custom-container">
@@ -2100,62 +2050,6 @@ const Home = () => {
   </section>
   {/* <!--rounded category end--> */}
 
-  {/* <!--title start--> */}
-  <div className="title1 section-my-space">
-    <h4>Special Products</h4> </div>
-  {/* <!--title end--> */}
-
-  {/* <!--product start--> */}
-  <section className="product section-pb-space">
-    <div className="custom-container">
-      <div className="row ">
-        <div className="col pr-0">
-          <div className="product-slide-6  no-arrow">
-            <div>
-              <div className="product-box">
-                <div className="product-imgbox">
-                  <div className="product-front">
-                    <a href="product-page(left-sidebar).html"> <img src="../assets/images/layout-4/product/1.jpg" className="img-fluid  " alt="product"/> </a>
-                  </div>
-                  <div className="product-back">
-                    <a href="product-page(left-sidebar).html"> <img src="../assets/images/layout-4/product/a1.jpg" className="img-fluid  " alt="product"/> </a>
-                  </div>
-                  <div className="new-label3">
-                    <div>new</div>
-                  </div>
-                  <div className="on-sale3"> on sale </div>
-                </div>
-                <div className="product-detail detail-center detail-inverse">
-                  <div className="detail-title">
-                    <div className="detail-left">
-                      <div className="rating-star"> <i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> </div>
-                      <a href="product-page(left-sidebar).html">
-                        <h6 className="price-title">
-                                                                realme not 7
-                                                            </h6> </a>
-                    </div>
-                    <div className="detail-right">
-                      <div className="check-price"> $60.21 </div>
-                      <div className="price">
-                        <div className="price"> $50.05 </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="icon-detail">
-                    <button className="tooltip-top" data-tippy-content="Add to cart"> <i  data-feather="shopping-cart"></i> </button>
-                    <a href="#"  className="add-to-wish tooltip-top"  data-tippy-content="Add to Wishlist" > <i  data-feather="heart"></i> </a>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" className="tooltip-top"  data-tippy-content="Quick View"> <i  data-feather="eye"></i> </a>
-                    <a href="compare.html" className="tooltip-top" data-tippy-content="Compare"> <i  data-feather="refresh-cw"></i> </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  {/* <!--product end--> */}
 
   {/* <!--testimonial start-->  */}
   <section className="testimonial">
@@ -2204,7 +2098,9 @@ const Home = () => {
     </div>
   </section>
   {/* <!--instagram end--> */}
-    </div>
+  </main>
+
+    </Fragment>
   )
 }
 
