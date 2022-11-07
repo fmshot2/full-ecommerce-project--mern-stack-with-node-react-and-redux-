@@ -1,4 +1,8 @@
-import React, { Fragment } from 'react'
+import React, { Fragment } from 'react';
+// import "../../App.css"
+// import {  Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Search from './Search'
 
 const Header = () => {
   return (
@@ -116,7 +120,7 @@ const Header = () => {
                   </a>
                 </div>
               </div>
-              <div className="input-block">
+              {/* <div className="input-block">
                 <div className="input-box">
                   <form className="big-deal-form ">
                     <div className="input-group ">
@@ -134,7 +138,8 @@ const Header = () => {
                     </div>
                   </form>
                 </div>
-              </div>
+              </div> */}
+                <Search/>
               <div className="header-right">
                 <div className="icon-block">
                   <ul>
@@ -277,6 +282,7 @@ const Header = () => {
                           <a className="mor-slide-click">mor category <i className="fa fa-angle-down pro-down"></i><i className="fa fa-angle-up pro-up"></i></a>
                         </li>
                       </ul>
+                      
                     </div>
                   </div>
                 </div>

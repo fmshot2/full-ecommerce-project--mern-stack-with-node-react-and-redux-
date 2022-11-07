@@ -16,6 +16,7 @@ import Header from "./components/layout/Header";
 import Slider from "./components/layout/Slider"
 import Home from './components/Home';
 import Footer from './components/Home';
+import ProductDetails from './components/product/ProductDetails';
 
 function App() {
   return (
@@ -24,8 +25,10 @@ function App() {
         <Header />
         <Routes>
           <Route exact path="/" element={<Home />} />
+     <Route  path="/search/:keyword" element={<Home/>} />
+     < Route exact path = "/product/:id" element={<ProductDetails/>}  />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
         </div>
       </BrowserRouter>
   );
