@@ -10,7 +10,7 @@ const Product = ({ product }) => {
       <div className="product-box product-box2">
          <div className="product-imgbox">
             <div className="product-front">
-               <Link to="product-page(left-sidebar).html" tabindex="0">
+               <Link to={`/product/${product._id}`} tabindex="0">
                   <img  src={product.images[0].url} alt=""
                    className="img-fluid"/>
                   {/* <img src="../assets/images/mega-store/product/1.jpg" className="img-fluid  " alt="product"/> */}
@@ -66,7 +66,7 @@ const Product = ({ product }) => {
              </div>
              <span id="no_of_reviews">({product.numOfReviews} Reviews)</span>
            </div>
-            <Link to="product-page(no-sidebar).html" tabindex="0">
+            <Link to={`/product/${product._id}`} tabindex="0">
                <h3>{product.name}</h3>
             </Link>
             <h5>

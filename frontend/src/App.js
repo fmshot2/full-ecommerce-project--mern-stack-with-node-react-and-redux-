@@ -1,4 +1,3 @@
-import './App.css';
 import "./assets/css/color4.css";
   import "./assets/css/font-awesome.css";
   import "./assets/css/themify.css"
@@ -10,6 +9,8 @@ import "./assets/css/color4.css";
   // <!-- Bootstrap css -->
   import "./assets/css/bootstrap.css"
   // <!-- Theme css -->
+  import './App.css';
+
   import "./assets/css/color4.css"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/layout/Header";

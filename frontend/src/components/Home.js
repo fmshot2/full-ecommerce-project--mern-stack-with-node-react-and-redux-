@@ -7,7 +7,7 @@ import Product from './product/Product';
 import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from './layout/Loader'
-// import { useAlert } from 'react-alert';
+import { useAlert } from 'react-alert';
 import Pagination from 'react-js-pagination';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
@@ -29,7 +29,7 @@ const Home = () => {
   const [category, setCategory] = useState('')
   const [keyword, setKeyword] = useState('')
   const [price, setPrice] = useState([1, 1000])
-  // const alert = useAlert();
+  const alert = useAlert();
   const dispatch = useDispatch();
   const { loading, products, error, productsCount, resPerPage } = useSelector(state => state.products)
   const location = useLocation();
@@ -71,13 +71,13 @@ const Home = () => {
 
   useEffect(() => {
    
-    // if (error) {
-    //   return alert.error(error)
-    // }
+    if (error) {
+      return alert.error(error)
+    }
     dispatch(getProducts(keyword, currentPage, price, category, rating));
 
   }
-    , [dispatch, error, keyword, currentPage, price, category, rating])
+    , [dispatch, alert, error, keyword, currentPage, price, category, rating])
 
   function setCurrentPageNo(pageNumber) {
     setcurrentPage(pageNumber)
@@ -1232,7 +1232,11 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            {resPerPage <= productsCount && (
+           
+          </div>
+        </section>
+
+        {resPerPage <= productsCount && (
               <div className='d-flex justify-content-center mt-5'>
                 <Pagination
                   activePage={currentPage}
@@ -1249,8 +1253,6 @@ const Home = () => {
               </div>
 
             )}
-          </div>
-        </section>
 
        
 
