@@ -11,14 +11,15 @@ import { useAlert } from 'react-alert';
 import Pagination from 'react-js-pagination';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faStar as farFaStar } from '@fortawesome/free-regular-svg-icons'
-// import { faStar as fasFaStar } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar as farFaStar } from '@fortawesome/free-regular-svg-icons'
+import { faStar as fasFaStar } from '@fortawesome/free-solid-svg-icons'
 
 const attributeElements = {
   "xmlns:xlink": "http://www.w3.org/1999/xlink",
   "xml:space": "preserve",
 };
+
 
 const { createSliderWithTooltip } = Slider;
 const Range = createSliderWithTooltip(Slider.Range)
@@ -83,6 +84,10 @@ const Home = () => {
     setcurrentPage(pageNumber)
   }
 
+  const my_class = () => {
+    return keyword ? "col-lg-9 col-sm-12 col-xs-12" : "col-sm-3 collection-filter";
+  }
+  
   return (
     <Fragment>
             {loading ? <Loader /> : (
@@ -1137,7 +1142,141 @@ const Home = () => {
 
         <section className="product section-pb-space mb--5">
           <div className="custom-container">
-            <div className="row">
+          <div className="row">
+
+{keyword ? (
+  <Fragment>
+    {/* <div className="col-sm-3 collection-filter">
+      <div className="px-5">
+        <Range
+          marks={{
+            1: `$1`,
+            1000: `$1000`
+          }}
+          min={1}
+          max={1000}
+          defaultValue={[1, 1000]}
+          tipFormatter={value => `$${value}`}
+          tipProps={{
+            placement: "top",
+            visible: true
+          }}
+          value={price}
+          onChange={price => setPrice(price)}
+        />
+
+        <hr className="my-5" />
+
+        <div className="mt-5">
+          <h4 className="mb-3">
+            Categories
+          </h4>
+          <ul className="pl-0">
+            {categories.map(category => (
+              <li
+                style={{
+                  cursor: 'pointer',
+                  listStyleType: 'none'
+                }}
+                key={category}
+                onClick={() => setCategory(category)}
+              >
+                {category}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <hr className="my-3" />
+
+        <div className="mt-5">
+          <h4 className="mb-3">
+            Ratings
+          </h4>
+          <ul className="pl-0">
+            {[...new Array(totalStars)].map((star, i) => (
+              <li
+                style={{
+                  cursor: 'pointer',
+                  listStyleType: 'none'
+                }}
+                key={star}
+              >
+                <div> {[...new Array(totalStars)].map((arr, index) => {
+                  return index > i ? <FontAwesomeIcon icon={farFaStar}
+                    key={arr}
+                    onClick={() => setRating(index + 1)} />
+                    : <FontAwesomeIcon icon={fasFaStar} style={{ color: '#febd69' }}
+                      key={star}
+                      onClick={() => setRating(index + 1)} />
+                })}
+                </div>
+              </li>
+            ))}
+
+            <li
+              style={{
+                cursor: 'pointer',
+                listStyleType: 'none'
+              }}
+            >
+         
+
+            </li>
+          </ul>
+
+          <ul className="pl-0">
+            {[5, 4, 3, 2, 1].map(star => (
+              <li
+                style={{
+                  cursor: 'pointer',
+                  listStyleType: 'none'
+                }}
+                key={star}
+                onClick={() => setRating(star)}
+              >
+                <div className="rating-outer">
+                  <div className="rating-inner"
+                    style={{
+                      width: `${star * 20}%`
+                    }}
+                  >
+
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+
+      </div>
+    </div> */}
+
+    <div className={my_class}>
+      <div className="row">
+        {products.map(product => (
+
+          <Product key={product._id} product={product} col={4} />
+
+        ))}
+      </div>
+    </div>
+  </Fragment>
+) : (
+
+  products.map(product => (
+
+    <Product key={product._id} product={product} col={3} />
+
+  ))
+)}
+
+
+
+</div>
+            {/* <div className="row">
+
               <div className="col pr-0">
                 <div className="product-slide-6 no-arrow slick-initialized slick-slider">
                   <button
@@ -1150,70 +1289,6 @@ const Home = () => {
                   </button>
                   <div className="slick-list draggable">
                   {products && products.map(product => (
-
-          //         <div key={product._id} class="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style={{width: "308px"}}><div><div style={{width: "100%", display: "inline-block"}}/>
-          //         <div class="product-box product-box2">
-          //            <div class="product-imgbox">
-          //               <div class="product-front">
-          //                  <Link to="product-page(left-sidebar).html" tabindex="0">
-          //                  <img  src={product.images[0].url} alt=""
-          //          className="img-fluid"/>                           </Link>
-          //               </div>
-          //               <div class="product-back">
-          //                  <Link to="product-page(left-sidebar).html" tabindex="0">
-          //                  <img  src={product.images[0].url} alt=""
-          //          className="img-fluid"/>                           </Link>
-          //               </div>
-          //               <div class="product-icon icon-inline">
-          //                  <button class="tooltip-top  add-cartnoty" data-tippy-content="Add to cart" tabindex="0">
-          //                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-          //                  </button>
-          //                  <a href="" class="add-to-wish tooltip-top" data-tippy-content="Add to Wishlist" tabindex="0">
-          //                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-          //                  </a>
-          //                  <a href="" data-bs-toggle="modal" data-bs-target="#quick-view" class="tooltip-top" data-tippy-content="Quick View" tabindex="0">
-          //                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-          //                  </a>
-          //                  <a href="compare.html" class="tooltip-top" data-tippy-content="Compare" tabindex="0">
-          //                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="feather feather-refresh-cw"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
-          //                  </a>
-          //               </div>
-          //               <div class="new-label1">
-          //                  <div>new</div>
-          //               </div>
-          //               <div class="on-sale1">
-          //                  on sale
-          //               </div>
-          //            </div>
-          //            <div class="product-detail product-detail2 ">
-          //               {/* <ul>
-          //                  <li><i class="fa fa-star"></i></li>
-          //                  <li><i class="fa fa-star"></i></li>
-          //                  <li><i class="fa fa-star"></i></li>
-          //                  <li><i class="fa fa-star"></i></li>                           
-          //                  <li><i class="fa fa-star-o"></i></li>
-          //               </ul> */}
-                        
-          // <div className="ratings mt-auto">
-          //   <div className="rating-outer">
-          //     <div className="rating-inner" style={{ width: `${(product.ratings / 5) * 100}%` }}></div>
-          //   </div>
-          //   <span id="no_of_reviews">({product.numOfReviews} Reviews)</span>
-          // </div>
-          //               <Link to="product-page(no-sidebar).html" tabindex="0">
-          //                  <h3>{product.name}</h3>
-          //               </Link>
-          //               <h5>
-          //                  $50
-          //                  <span>
-          //             $80
-          //           </span>
-          //               </h5>
-          //            </div>
-          //         </div>
-          //      </div></div>
-                // {products.map(product => (
-                  // <div> key={product._id} {product.name}</div>
         
         <Product key={product._id} product={product} />
         
@@ -1231,7 +1306,7 @@ const Home = () => {
                   </button>
                 </div>
               </div>
-            </div>
+            </div> */}
            
           </div>
         </section>
