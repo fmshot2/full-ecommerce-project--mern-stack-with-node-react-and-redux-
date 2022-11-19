@@ -1144,133 +1144,14 @@ const Home = () => {
           <div className="custom-container">
           <div className="row">
 
-{keyword ? (
-  <Fragment>
-    {/* <div className="col-sm-3 collection-filter">
-      <div className="px-5">
-        <Range
-          marks={{
-            1: `$1`,
-            1000: `$1000`
-          }}
-          min={1}
-          max={1000}
-          defaultValue={[1, 1000]}
-          tipFormatter={value => `$${value}`}
-          tipProps={{
-            placement: "top",
-            visible: true
-          }}
-          value={price}
-          onChange={price => setPrice(price)}
-        />
-
-        <hr className="my-5" />
-
-        <div className="mt-5">
-          <h4 className="mb-3">
-            Categories
-          </h4>
-          <ul className="pl-0">
-            {categories.map(category => (
-              <li
-                style={{
-                  cursor: 'pointer',
-                  listStyleType: 'none'
-                }}
-                key={category}
-                onClick={() => setCategory(category)}
-              >
-                {category}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <hr className="my-3" />
-
-        <div className="mt-5">
-          <h4 className="mb-3">
-            Ratings
-          </h4>
-          <ul className="pl-0">
-            {[...new Array(totalStars)].map((star, i) => (
-              <li
-                style={{
-                  cursor: 'pointer',
-                  listStyleType: 'none'
-                }}
-                key={star}
-              >
-                <div> {[...new Array(totalStars)].map((arr, index) => {
-                  return index > i ? <FontAwesomeIcon icon={farFaStar}
-                    key={arr}
-                    onClick={() => setRating(index + 1)} />
-                    : <FontAwesomeIcon icon={fasFaStar} style={{ color: '#febd69' }}
-                      key={star}
-                      onClick={() => setRating(index + 1)} />
-                })}
-                </div>
-              </li>
-            ))}
-
-            <li
-              style={{
-                cursor: 'pointer',
-                listStyleType: 'none'
-              }}
-            >
-         
-
-            </li>
-          </ul>
-
-          <ul className="pl-0">
-            {[5, 4, 3, 2, 1].map(star => (
-              <li
-                style={{
-                  cursor: 'pointer',
-                  listStyleType: 'none'
-                }}
-                key={star}
-                onClick={() => setRating(star)}
-              >
-                <div className="rating-outer">
-                  <div className="rating-inner"
-                    style={{
-                      width: `${star * 20}%`
-                    }}
-                  >
-
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-
-      </div>
-    </div> */}
-
-    <div className={my_class}>
-      <div className="row">
-        {products.map(product => (
-
-          <Product key={product._id} product={product} col={4} />
-
-        ))}
-      </div>
-    </div>
-  </Fragment>
-) : (
+{
 
   products.map(product => (
 
     <Product key={product._id} product={product} col={3} />
 
-  ))
-)}
+  ))}
+
 
 
 
